@@ -10,6 +10,7 @@
     - monit
     - java
     - logstash
+    - elasticsearch
 
   # PS
   tasks:
