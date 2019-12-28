@@ -1,2 +1,5 @@
 ---
-# defaults file for java
+java_packages:
+  # - openjdk-7-jdk
+  - openjdk-11-jdk
+java_home: ""

@@ -8,6 +8,8 @@
     - apt
     - ntp
     - monit
+    - java
+    - logstash
 
   # PS
   tasks:
