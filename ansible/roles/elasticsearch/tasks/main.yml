@@ -46,3 +46,39 @@
     port: "{{ elasticsearch_http_port }}"
     delay: 3
     timeout: 300
+
+- name: Create elasticsearch plugins directory
+  file:
+    path: /home/vagrant/es_plugins
+    state: directory
+
+- name: Install elasticsearch plugin - elasticsearch-HQ 
+  shell:
+    cmd: |
+      git clone https://github.com/ElasticHQ/elasticsearch-HQ
+      cd elasticsearch-HQ
+      python3 -m pip install -r requirements.txt
+    chdir: /home/vagrant/es_plugins/
+
+- name: Enable elasticsearch plugin - elasticsearch-HQ
+  shell: nohup python3 /home/vagrant/es_plugins/elasticsearch-HQ/application.py </dev/null >/dev/null 2>&1 &
+  # async: 45
+  # poll: 0
+
+- name: Install elasticsearch plugin - elasticsearch-head 
+  shell:
+    cmd: |
+      git clone git://github.com/mobz/elasticsearch-head.git
+      cd elasticsearch-head
+      npm install
+    chdir: /home/vagrant/es_plugins/
+
+- name: Enable elasticsearch plugin - elasticsearch-head
+  shell: 
+    cmd: |
+      cd /home/vagrant/es_plugins/elasticsearch-head 
+      nohup npm run start </dev/null >/dev/null 2>&1 &
+  # async: 45
+  # poll: 0
+
+# - name: Install elasticsearch plugin - elasticsearch-head

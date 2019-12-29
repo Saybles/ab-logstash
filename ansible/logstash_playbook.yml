@@ -2,15 +2,35 @@
 - name: Perform logstash playbook
   hosts: all
   become: yes
-
   
+
   roles:
-    - apt
+    - { role: apt, apt_packages: [ git, htop, net-tools, python3-pip, nodejs, npm ], when: ansible_system == 'Linux' }
     - ntp
     - monit
     - java
     - logstash
     - elasticsearch
+    # - role: elastic.elasticsearch
+    #   vars:
+    #     es_data_dirs:
+    #       - "/opt/elasticsearch/data"
+    #     es_log_dir: "/opt/elasticsearch/logs"
+    #     es_config:
+    #       node.name: "node1"
+    #       cluster.name: "logstash"
+    #       discovery.seed_hosts: "localhost:9300"
+    #       http.port: 9200
+    #       transport.port: 9300
+    #       node.data: false
+    #       node.master: true
+    #       bootstrap.memory_lock: true
+    #     es_heap_size: 256m
+    #     es_api_port: 9200
+    #     es_plugins_reinstall: true
+    #     es_plugins:
+    #       # - plugin: ElasticHQ/elasticsearch-HQ
+    #       - plugin: https://github.com/mobz/elasticsearch-head
 
   # PS
   tasks:

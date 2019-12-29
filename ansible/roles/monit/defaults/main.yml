@@ -17,9 +17,9 @@ monit_mail_default_from: monit@mydomain.com
 monit_mail_default_subject: "[Monit] $SERVICE $EVENT"
 monit_mail_default_message: "Monit $ACTION $SERVICE at $DATE on $HOST: $DESCRIPTION."
 
-monit_http_host: localhost
+monit_http_host: 0.0.0.0
 monit_http_port: 2812
-monit_http_allow: ["localhost"]
+monit_http_allow: ["localhost", "0.0.0.0", "192.168.255.1"]
 
 monit_http_ssl: false
 monit_http_local_pemfile_path: ../secrets/monit.pem
