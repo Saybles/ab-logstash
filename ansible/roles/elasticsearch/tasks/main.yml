@@ -45,7 +45,7 @@
     host: "{{ elasticsearch_network_host }}"
     port: "{{ elasticsearch_http_port }}"
     delay: 3
-    timeout: 300
+    timeout: 600
 
 - name: Create elasticsearch plugins directory
   file:

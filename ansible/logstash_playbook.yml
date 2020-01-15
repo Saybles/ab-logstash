@@ -9,8 +9,8 @@
     - ntp
     - monit
     - java
-    - logstash
     - elasticsearch
+    - logstash
     # - role: elastic.elasticsearch
     #   vars:
     #     es_data_dirs:

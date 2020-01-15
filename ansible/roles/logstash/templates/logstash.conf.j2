@@ -1,0 +1,18 @@
+input {                                                                                      
+  udp {                                                                                      
+    host => "{{ logstash_url }}"                                                                  
+    port => "{{ logstash_listen_port }}"                                                                         
+    codec => "json"                                                                          
+    type => "rsyslog"                                                                        
+  }                                                                                          
+}                                                                                            
+
+filter { }                                                                        
+                                                                                                                                                                     
+output {                                                                                     
+  if [type] == "rsyslog" {                                                                   
+    elasticsearch {                                                                          
+      hosts => [ "{{ logstash_elasticsearch_url }}:{{ logstash_elasticsearch_port }}" ]                                                          
+    }                                                                                        
+  }                                                                                          
+}            
